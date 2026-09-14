@@ -1,0 +1,129 @@
+@import "tailwindcss";
+
+/*
+  Axiom — adjudicated equity research.
+
+  Colour carries meaning, not decoration: green and red are reserved
+  exclusively for direction (bull/bear, upside/downside) so they never
+  appear as ornament. Amber is the interactive accent, which keeps the
+  directional pair legible as data wherever it shows up.
+*/
+@theme {
+  --color-ink: #0e1418;
+  --color-surface: #151e24;
+  --color-raised: #1c282f;
+  --color-line: #24343d;
+  --color-line-soft: #1b272e;
+  --color-fg: #dfe8ec;
+  --color-muted: #8ba0ab;
+  --color-faint: #5d717c;
+
+  --color-bull: #52c08a;
+  --color-bear: #e2685a;
+  --color-signal: #e8b24c;
+
+  --font-display: var(--font-newsreader), Georgia, serif;
+  --font-sans: var(--font-plex-sans), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+html {
+  background: var(--color-ink);
+}
+
+body {
+  background: var(--color-ink);
+  color: var(--color-fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Numerals line up in columns wherever they're compared. */
+.tnum {
+  font-family: var(--font-mono);
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 400;
+  letter-spacing: -0.015em;
+}
+
+/* Section headings: a hairline that carries the eye, rather than a
+   tracked-out capitals label floating above the content. */
+.rule-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--color-muted);
+}
+.rule-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--color-line);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible {
+  outline: 2px solid var(--color-signal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--color-signal) 30%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@keyframes settle {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* One orchestrated arrival on the verdict — the page's single moment of
+   motion, so it reads as the answer landing rather than as decoration. */
+.settle {
+  animation: settle 0.5s cubic-bezier(0.2, 0.7, 0.3, 1) both;
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.6s ease-in-out infinite;
+}

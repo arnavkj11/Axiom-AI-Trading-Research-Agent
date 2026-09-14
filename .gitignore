@@ -141,3 +141,15 @@ dist
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 .vite/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+*.egg-info/
+.ruff_cache/
+.mypy_cache/
+
+# Playwright MCP session artifacts (snapshots, console logs, screenshots)
+.playwright-mcp/
